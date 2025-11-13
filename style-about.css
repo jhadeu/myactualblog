@@ -1,0 +1,775 @@
+/* my actual blog style2.css */
+@font-face {
+  font-family: cutesy;
+  src: url(../fonts/cutesy.TTF);
+}
+
+@font-face {
+  font-family: dogica;
+  src: url(../fonts/dogica.ttf);
+}
+
+@font-face {
+  font-family: alagard;
+  src: url(../fonts/alagard.ttf);
+}
+
+@font-face {
+  font-family: rainyhearts;
+  src: url(../fonts/rainyhearts.ttf);
+}
+
+@font-face {
+  font-family: Minecraft;
+  src: url(../fonts/Minecraft.ttf);
+}
+
+@font-face {
+  font-family: Daydream;
+  src: url(../fonts/Daydream.otf);
+}
+
+@font-face {
+  font-family: bubbly;
+  src: url(../fonts/bubbly.TTF);
+}
+
+body {
+  font-family: dogica;
+  font-size: 12px;
+  letter-spacing: -3px;
+  line-height: 1.4;
+  margin: 0;
+  background-size: 940px;
+  background-image: url(../pictures/woobly-background.jpeg);
+  color: #E8F4C4;
+}
+
+/* rétablit le scroll global */
+html, body {
+  overflow-x: hidden; /* pas de scroll horizontal */
+  overflow-y: auto;   /* scroll vertical normal */
+}
+
+/* Curseur personnalisé global */
+*,
+*::before,
+*::after,
+a,
+a:hover,
+a:active,
+button,
+button:hover,
+button:active,
+input,
+input:hover,
+input:active,
+textarea,
+textarea:hover,
+textarea:active {
+  cursor: url('../cursor/bow-cursor.gif'), auto !important;
+}
+
+* {
+  box-sizing: border-box;
+  overflow-clip-margin: content-box;
+}
+
+
+
+/* texte qui défile */
+.scrolling-text {
+  background-color: #8BD3EE;
+  padding: 10px;
+  color: #FCEF90;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  border-top: 2px dotted #fff;
+  border-bottom: 2px dotted #fff;
+}
+
+/* below this line is CSS for the layout */
+
+/* this is a CSS comment
+    to uncomment a line of CSS, remove the * and the /
+    before and after the text */
+
+/* the "container" is what wraps your entire website */
+/* if you want something (like the header) to be Wider than
+    the other elements, you will need to move that div outside
+    of the container */
+#container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* the area below is for all links on your page
+    EXCEPT for the navigation */
+#container a {
+  color: #FCEF90;
+  /* if you want to remove the underline
+      you can add a line below here that says:
+      text-decoration:none; */
+}
+
+#header {
+  width: 100%;
+  background-color: #CBAFE1;
+  /* header color here! */
+  height: 150px;
+  /* this is only for a background image! */
+  /* if you want to put images IN the header, 
+      you can add them directly to the <div id="header"></div> element! */
+  background-image: url(../pictures/pastel-banner.jpeg);
+  background-size: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#header img {
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  justify-self: flex-end;
+}
+
+/* navigation section!! */
+#navbar {
+  height: 40px;
+  background-color: #CCEF9C;
+  /* navbar color */
+  width: 100%;
+  align-content: center;
+}
+
+#navbar ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  justify-content: space-evenly;
+}
+
+#navbar li {
+  padding-top: 10px;
+}
+
+/* navigation links*/
+#navbar li a {
+  color: #8BD3EE;
+  /* navbar text color */
+  font-weight: 800;
+  text-decoration: none;
+  /* this removes the underline */
+}
+
+/* navigation link when a link is hovered over */
+#navbar li a:hover {
+  color: #E8F4C4;
+  text-decoration: underline;
+}
+
+#flex {
+  display: flex;
+
+}
+
+/* this colors BOTH sidebars
+    if you want to style them separately,
+    create styles for #leftSidebar and #rightSidebar */
+aside {
+  background-color: #8BD3EE;
+  width: 200px;
+  padding: 20px;
+  font-size: smaller;
+  border-top: 3px dotted #fff;
+  border-left: 3px dotted #fff;
+  border-bottom: 3px dotted #fff;
+  /* this makes the sidebar text slightly smaller */
+}
+
+.gif-aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+gif-aside img {
+  width: 100px;
+  height: auto;
+  /* this is the maximum width of the gif */
+}
+
+/* this is the color of the main content area,
+    between the sidebars! */
+main {
+  background-color: #CBAFE1;
+  border: 3px dotted #fff;
+  flex: 1;
+  padding: 10px;
+  order: 2;
+}
+
+.about-me {
+  align-items: flex-start;
+  margin-bottom: 10px;
+  text-align: start;
+  display: block;
+  gap: 10px;
+  box-sizing: border-box;
+  flex-direction: row-reverse;
+}
+
+.pfp-scroll-bar {
+  display: block;
+  gap: 5px;        
+  overflow-x: auto;
+  align-items: center;
+  flex: 0 0 auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8BD3EE #dacae7;
+  float: right;
+}
+
+.pfp-scroll-bar img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.about-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.about-me::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.about-text p {
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+#pfp {
+  width: 35%;
+  height: auto;
+  display: flex;
+  float: right;
+  display: block;
+  margin: 0;
+}
+
+.pfp {
+  padding: 0;
+  justify-self: right;
+}
+
+#pfp img {
+  margin: 20px;
+}
+
+.pfp-scroll-bar {
+  overflow-x: scroll;
+  display: flex;
+  width: 165px;
+  border: 3px dotted #CCEF9C;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-left: 5px;
+}
+
+.about-text {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+  color: #D20E7C;
+}
+
+.about-me-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.about-me-badges img {
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  will-change: transform, box-shadow, filter;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 6px; /* optionnel */
+}
+
+.about-me-badges img:hover,
+.about-me-badges img:focus-visible {
+  transform: scale(1.2);
+}
+
+.facts-list {
+  list-style-image: url(../pictures/etoiles-confettis.gif);;
+  overflow-y: auto;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8BD3EE #dacae7;
+  height: 150px;
+  height: 180px;
+  margin-top: 0;
+  width: 210px;
+}
+
+ul.facts-list {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.fanlisting-stickers {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.fanlisting-stickers img:hover,
+.fanlisting-stickers img:focus-visible {
+  transform: scale(1.2);
+}
+
+#leftSidebar {
+  width: 230px;
+  order: 1;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.lastfm-widget {
+  width: 215px; /* largeur de ta sidebar */
+  height: auto;
+  overflow: hidden; /* masque le surplus à droite */
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
+}
+
+.lastfm-widget img {
+  width: 100%; /* garde les proportions dans ton bloc */
+  display: block;
+  object-fit: cover;
+  object-position: left; /* garde la partie gauche visible */
+}
+
+
+
+#rightSidebar {
+  order: 3;
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  background: #ffe2ee;
+  border-top: 2px dashed #ffb6c1;
+  margin-top: 0;
+  font-size: 0.9em;
+  color: #844561;
+}
+
+h1,
+h2,
+h3 {
+  color: #fff2f7;
+  font-family: cutesy;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-family: bubbly;
+  letter-spacing: 0.5px;
+  font-size: 21px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+h1 {
+  font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.welcome-title {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre le tout horizontalement */
+  gap: 8px; /* espace entre les éléments */
+}
+
+.welcome-title img {
+  vertical-align: middle;
+}
+
+strong {
+  /* this styles bold text */
+  color: #CCEF9C;
+  padding-top: 0;
+  padding-bottom: 5px; /* ou la valeur que tu veux */
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.about-me > p {
+  padding-top: 0;
+  padding-bottom: 5px; /* ou la valeur que tu veux */
+  margin-top: 0;
+  margin-bottom: 8px;  /* ajuste si besoin */
+}
+
+/* my chat box (or smth else i might just change it)*/
+.box {
+  border: 1px solid #CCEF9C;
+  background-image: url(../pictures/heart-bg.jpeg);
+  background-size: 50px;
+  background-repeat: repeat;
+  background-position: center;
+  position: relative;
+  width: 190px;
+  height: 190px;
+  margin: 10px auto 0 10px;
+  padding: 0;
+  display: block; 
+}
+
+.box iframe {
+  width: 105%;
+  height: 100%;
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#topBar {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  font-size: smaller;
+  background-color: #ffffff;
+}
+
+/* BELOW THIS POINT IS MEDIA QUERY */
+
+/* so you wanna change the width of your page? 
+    by default, the container width is 900px.
+    in order to keep things responsive, take your new height,
+    and then subtrack it by 100. use this new number as the 
+    "max-width" value below
+    */
+
+@media only screen and (max-width: 800px) {
+  #flex {
+    flex-wrap: wrap;
+  }
+
+  aside {
+    width: 100%;
+  }
+
+  /* the order of the items is adjusted here for responsiveness!
+      since the sidebars would be too small on a mobile device.
+      feel free to play around with the order!
+      */
+  main {
+    order: 1;
+  }
+
+  #leftSidebar {
+    order: 2;
+  }
+
+  #rightSidebar {
+    order: 3;
+  }
+
+  .border-left {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  width: 100%;             /* occupe toute la largeur possible */
+  height: 150px;           /* fixe une hauteur pour que align-items fonctionne */
+}
+
+  #navbar ul {
+    flex-wrap: wrap;
+  }
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+a.findme {
+  text-decoration: none;
+  display: block;
+  margin-block-start: 7px;
+  margin-block-end: 7px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.socials ul {
+  list-style-type: none;
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
+}
+
+.socials li { 
+display: block; 
+padding: 4px 0;
+color: hsl(345, 96%, 56%);
+background-color: hsl(338, 100%, 87%);
+text-align: center;
+border-bottom: hsl(345, 96%, 56%);
+border-left: hsl(345, 96%, 56%);
+border-right: hsl(345, 96%, 56%);
+box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 20%), inset -13px 0px 6px -10px rgb(66 66 66 / 56%), inset 0px 13px 6px -10px #ffffff, inset 0px -13px 6px -10px rgb(66 66 66 / 38%);
+}
+
+.socials li:hover {
+background-color: hsl(338, 100%, 76%);
+box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 40%), inset -13px 0px 6px -10px rgb(66 66 66 / 76%), inset 0px 13px 6px -10px #ffffff, inset 0px -13px 6px -10px rgb(66 66 66 / 58%);
+}
+
+.webrings {
+  display: flex;             /* aligne les éléments sur une seule ligne */
+  flex-wrap: wrap;
+  row-gap: 0px;        /* espace vertical entre les lignes */
+  column-gap: 10px;      /* espace horizontal entre les images */
+  justify-content: center;   /* centre le tout horizontalement */
+  align-items: center;       /* aligne verticalement si tailles différentes */
+}
+
+.webrings img {
+  display: block;            /* évite les petits espaces blancs sous les images */
+}
+
+#pfp {
+  overflow: visible !important;
+}
+
+/* header */
+.image-header {
+  background-image: url(../pictures/stars-header.gif);
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  border-bottom: 3px dashed #e91e3d;
+}
+
+/* gif header */
+.gif-divider {
+  text-align: center;
+  background: transparent;
+  padding: 5px 0;
+}
+
+/* décoration background */
+
+/* blocs */
+.site-log,
+.about,
+.chatbox,
+.music-player {
+  padding: 15px;
+  border-image: url('../pictures/border-zigzag.png') 9 fill round; 
+  border-style : solid;
+  border-width: 12px;
+  border-radius: 15px;
+  border-color: #FCEF90;
+  transition: transform 0.2s ease;
+  box-shadow: #FCEF90 0px 0px 8px, #FCEF90 0px 0px 16px;
+}
+
+.music-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.music-player,
+.div2,
+.div3,
+.blinkies, 
+.about-me {
+  background: #dacae7 !important;
+  padding: 15px;
+  border: 2px solid #FCEF90 !important;
+  border-radius: 15px !important;
+  box-shadow: #FCEF90 0px 0px 4px, #FCEF90 0px 0px 4px; 
+ }
+
+
+.youtube-player {
+  padding : 0;
+  display: flex;
+  margin : 0;
+  flex-direction: column; /* titre au-dessus des vignettes */
+  align-items: flex-start; /* aligne h2 + vignettes à gauche */
+  gap: 8px;
+}
+
+h2.fanlisting {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #A3C2FA;
+}
+
+.song-info {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.dontgiveup {
+  position: relative;
+  display: flex;
+  align-items: flex-end;  /* place tout en bas */
+  justify-content: flex-start; /* aligne à gauche */
+  padding: 10px;
+  width: 100%;
+  height: auto;
+}
+
+#dontgiveup {
+  width: 60px; /* au lieu de 100% pour que le GIF garde une taille raisonnable */
+  height: auto;
+  margin-right: 20px; /* espace entre le GIF et le texte */
+  float: left;      /* fait flotter le GIF à gauche du texte */
+}
+
+.div2 .dgu-text {
+  color: #ff82a9; /* rose pastel par exemple */
+  margin: 0;
+  padding: 0;
+  text-align: justify; /* pour un rendu “journal” */
+}
+
+.blinkies {
+  color: #ff82a9;
+  grid-column: 1 / 3;
+}
+
+#kitty {
+  width: 100px;
+  height: auto;
+  display: flex;
+}
+
+.kitty {
+  padding: 0;
+  justify-self: center;
+}
+
+/* mot de fin :D */
+.footer-section {
+  text-align: center;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  background: #ffe2ee;
+  border-top: 2px dashed #ffb6c1;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #844561;
+}
+
+.crt::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 20;
+    background-size: 100% 2px, 3px, 100%;
+    pointer-events: none;
+}
+
+.parent {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+display: grid;
+grid-template-columns: 1.8fr 1.2fr; /* music-player plus petit, div2 plus large */
+grid-template-rows: auto auto; /* première ligne pour les deux, deuxième ligne pour div3 */
+}
+
+.div3 { 
+  grid-column: 1 / span 2; /* prend les deux colonnes */
+  color: #D20E7C;
+}
+
+.music-player { 
+grid-area: 1 / 1 / 2 / 2; 
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 2 / 1 / 3 / 3; }
+
+.div2 {
+  letter-spacing: 0px;
+}
+
+.welcome {
+  height: 100%;
+  width: 60px;
+  display: block;          
+  margin: 0;
+  padding: 10px;
+}

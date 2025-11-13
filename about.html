@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <div class="crt"></div>
+    <link rel="icon" href="../pictures/strawberry-cat.png" type="image/x-icon" style="width: 64px" height="64px" />
+    <meta charset="UTF-8" />
+    <title>: ̗̀➛jade's blog!!𐙚🧸ྀི</title>
+    <link rel="stylesheet" href="style-about.css" />
+    <script type="text/javascript">
+      
+// <![CDATA[
+var colours=new Array('#FDA3CA', '#FDBEA3', '#FFF0C2', '#C9FFC2', '#9EE8FF', '#D89EFF'); // colours of the hearts
+var minisize=16; // smallest size of hearts in pixels
+var maxisize=28; // biggest size of hearts in pixels
+var hearts=66; // maximum number of hearts on screen
+var over_or_under="over"; // set to "over" for hearts to always be on top, or "under" to allow them to float behind other objects
+
+/*****************************
+*JavaScript Love Heart Cursor*
+*  (c)2013+ mf2fm web-design *
+*   http://www.mf2fm.com/rv  *
+*  DON'T EDIT BELOW THIS BOX *
+*****************************/
+var x=ox=400;
+var y=oy=300;
+var swide=800;
+var shigh=600;
+var sleft=sdown=0;
+var herz=new Array();
+var herzx=new Array();
+var herzy=new Array();
+var herzs=new Array();
+var kiss=false;
+
+if (typeof('addRVLoadEvent')!='function') function addRVLoadEvent(funky) {
+  var oldonload=window.onload;
+  if (typeof(oldonload)!='function') window.onload=funky;
+  else window.onload=function() {
+    if (oldonload) oldonload();
+    funky();
+  }
+}
+
+addRVLoadEvent(mwah);
+
+function mwah() { if (document.getElementById) {
+  var i, heart;
+  for (i=0; i<hearts; i++) {
+    heart=createDiv("auto", "auto");
+    heart.style.visibility="hidden";
+	heart.style.zIndex=(over_or_under=="over")?"1001":"0";
+    heart.style.color=colours[i%colours.length];
+	heart.style.pointerEvents="none";
+    if (navigator.appName=="Microsoft Internet Explorer") heart.style.filter="alpha(opacity=75)";
+    else heart.style.opacity=0.75;
+    heart.appendChild(document.createTextNode(String.fromCharCode(9734)));
+    document.body.appendChild(heart);
+    herz[i]=heart;
+	herzy[i]=false;
+  }
+  set_scroll();
+  set_width();
+  herzle();
+}}
+
+function herzle() {
+  var c;
+  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<hearts; c++) if (herzy[c]===false) {
+	  herz[c].firstChild.nodeValue=String.fromCharCode(9734);
+      herz[c].style.left=(herzx[c]=x-minisize/2)+"px";
+      herz[c].style.top=(herzy[c]=y-minisize)+"px";
+      herz[c].style.fontSize=minisize+"px";
+	  herz[c].style.fontWeight='normal';
+      herz[c].style.visibility='visible';
+      herzs[c]=minisize;
+      break;
+    }
+  }
+  for (c=0; c<hearts; c++) if (herzy[c]!==false) blow_me_a_kiss(c);
+  setTimeout("herzle()", 40);
+}
+
+document.onmousedown=pucker;
+document.onmouseup=function(){clearTimeout(kiss);};
+
+function pucker() {
+  ox=-1;
+  oy=-1;
+  kiss=setTimeout('pucker()', 100);
+}
+
+function blow_me_a_kiss(i) {
+  herzy[i]-=herzs[i]/minisize+i%2;
+  herzx[i]+=(i%5-2)/5;
+  if (herzy[i]<sdown-herzs[i] || herzx[i]<sleft-herzs[i] || herzx[i]>sleft+swide-herzs[i]) {
+    herz[i].style.visibility="hidden";
+    herzy[i]=false;
+  }
+  else if (herzs[i]>minisize+2 && Math.random()<.5/hearts) break_my_heart(i);
+  else {
+    if (Math.random()<maxisize/herzy[i] && herzs[i]<maxisize) herz[i].style.fontSize=(++herzs[i])+"px";
+    herz[i].style.top=herzy[i]+"px";
+    herz[i].style.left=herzx[i]+"px";
+  }
+}
+
+function break_my_heart(i) {
+  var t;
+  herz[i].firstChild.nodeValue=String.fromCharCode(9734);
+  herz[i].style.fontWeight='bold';
+  herzy[i]=false;
+  for (t=herzs[i]; t<=maxisize; t++) setTimeout('herz['+i+'].style.fontSize="'+t+'px"', 60*(t-herzs[i]));
+  setTimeout('herz['+i+'].style.visibility="hidden";', 60*(t-herzs[i]));
+}
+
+document.onmousemove=mouse;
+function mouse(e) {
+  if (e) {
+    y=e.pageY;
+    x=e.pageX;
+  }
+  else {
+    set_scroll();
+    y=event.y+sdown;
+    x=event.x+sleft;
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  if (typeof(self.pageYOffset)=='number') {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+    sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+}
+
+function createDiv(height, width) {
+  var div=document.createElement("div");
+  div.style.position="absolute";
+  div.style.height=height;
+  div.style.width=width;
+  div.style.overflow="hidden";
+  div.style.backgroundColor="transparent";
+  return (div);
+}
+// ]]>
+
+</script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="headerArea">
+        <div id="header">
+          <img src="../pictures/super-cute.gif" alt="banner" width="220px" height="100px" />
+        </div>
+        <nav id="navbar">
+          <ul>
+            <li><a href="https://s0ft-rvge.neocities.org/">Home</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/about">About</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/pics">Pics</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/journals">Journals</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/inspo">Inspo</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/ressource">Ressources</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="scrolling-text">
+        <marquee behavior="scroll" direction="left"
+          >Come get to know me, i'm fun !! (i promise) </marquee
+        >
+      </div>
+
+      <div class="gif-divider">
+        <img src="../pictures/stars-banner-2.gif" alt="gif divider" height="80" />
+      </div>
+      <div id="flex">
+        <aside id="leftSidebar">
+          <div class="border-left">
+          <img class="welcome" src="../pictures/heart-bubble.gif" alt="border left" height="90%" width="200px" />
+        </div>
+          <h3>Please leave a message !!</h3>
+          <div class="box">
+            <iframe src="https://www5.cbox.ws/box/?boxid=959011&boxtag=hfPjeG" width="100%" height="200" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
+            <ul style="padding-left: 50px">
+          </div>
+          <div class="gif-aside">
+            <img src="../pictures/note-de-musique.png" alt="fraises" width="70%" height="auto" />
+          </div>
+          <h3>You can also find me here ˋ°•*⁀➷</h3>
+          <div class="socials">
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/jadounn.e/"
+                target="insta" class="findme"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a href="https://fr.pinterest.com/hevd3ry/" target="_blank" class="findme"
+                >Pinterest</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://open.spotify.com/user/pandasouvage"
+                target="_blank" class="findme"
+                >Spotify</a
+              >
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@jadounn.e/featured" target="_blank" class="findme"
+                >YouTube</a
+              >
+            </li>
+            <li>
+              <a href="/notfinished" target="_blank" class="findme">Carrd</a>
+            </li>
+          </ul>
+          </div>
+          <div class="FC2-clapping-widget">
+          <!-- FC2 Clap tag starts here -->
+<div class="FC2-clapping-widget" style="text-align:center; padding:0px;">
+  <a href="https://clap.fc2.com/post/jadeuh/?url=https%3A%2F%2F127.0.0.1%3A5500%2Fmyactualblog.html&title=jade's+blog" 
+     target="_blank" title="Web Clap by FC2">
+    <img src="//clap.fc2.com/images/button/red/jadeuh?url=https%3A%2F%2F127.0.0.1%3A5500%2Fmyactualblog.html&lang=en" 
+         alt="Web Clap by FC2" style="border:none; width:120px; padding:10px;" />
+  </a>
+</div>
+<!-- FC2 Clap tag ends here -->
+          </div>
+          <div class="lastfm-widget" style="text-align:center;">
+         <a href="https://www.last.fm/user/nvwj0on">
+          <img src="https://lastfm-recently-played.vercel.app/api?user=nvwj0on" height="auto" width="100%">
+         </a>
+</div>
+
+        </aside>
+<main>
+  <div class="about-me">
+    <div class="pfp-scroll-bar">
+      <img src="../pictures/selfie-1.png" alt="me1" width="150" height="150">
+      <img src="../pictures/selfie-2.png" alt="me2" width="150" height="150">
+      <img src="../pictures/selfie-3.png" alt="me3" width="150" height="150">
+    </div>
+
+    <div class="about-content">
+      <h2 class="welcome_title">
+        <img src="../pictures/rainbow-left.gif" width="26" height="21" alt="">
+        about me
+        <img src="../pictures/rainbow-right.gif" width="26" height="21" alt="">
+      </h2>
+
+      <div class="about-text">
+        <p><strong>hi !!</strong> my name is jade, i turned 21 and i'm a french student, studying for a master degree :) </p>
+        <p>i really like web design and aesthethism in general (pinterest is my safe place) so i started coding just for fun, i'm not really a pro lmao.. TT</p>
+        <p><strong>i like trying new things</strong> but i also have a lot of temporary passions and over-fixations on tons of things that I end up completely dropping afterward 
+          (I hope this isn’t one of them), like writing, photo editing, video editing, soccer, K-pop... all of which were big phases in my life. <img src="../pictures/!!!!.gif"></p>
+
+      </div>
+      <div class="about-me-badges">
+        <img src="../pictures/female.png" alt="female">
+        <img src="../pictures/she-her.png" alt="She/Her">
+        <img src="../pictures/student.png" alt="Student">
+        <img src="../pictures/webcoric.png" alt="Webcoric">
+        <img src="../pictures/young-adult.png" alt="Young Adult">
+        <img src="../pictures/sanriocore.png" alt="Sanriocore (Hello Kitty)">
+        <img src="../pictures/sensitive.png" alt="Sensitive">
+        <img src="../pictures/french.png" alt="French">
+        <img src="../pictures/plant-owner.png" alt="Plant Owner">
+        <img src="../pictures/scorpio.png" alt="Scorpio">
+        <img src="../pictures/enfj.png" alt="ENFJ">
+        <img src="../pictures/ambivert.png" alt="Ambivert">
+      </div>
+    </div>
+  </div>
+
+  <div class="parent">
+    <section class="music-player">  
+        <h2 class="fanlisting">my fandom !!</h2>
+        <div class="fanlisting-stickers">
+        <a href="https://movieloverfls.org/3ds/index.php" target="_blank" alt="3ds">
+        <img src="../pictures/3ds.png">
+        </a>
+        <a href="https://tom.dead-ish.net/" target="_blank" alt="tom hiddleston">
+        <img src="../pictures/tom.png">
+        </a>
+        <a href="https://fan.yerfej.org/mark/" target="_blank" alt="mark ruffalo">
+        <img src="../pictures/markruffalo.png">
+        </a>
+        <a href="https://fan.enamour.nu/vaporeon/" target="_blank" alt="vaporeon">
+        <img src="../pictures/vaporeon.png">
+        </a>
+        <a href="https://fanlisting.altervista.org/dogs/" target="_blank" alt="dogs and puppies">
+        <img src="../pictures/dogs.png">
+        </a>
+        <a href="https://eku53ru.net/fl/ac/codes.php" target="_blank" alt="acnl">
+        <img src="../pictures/acnl.gif"> 
+        </a>
+        <a href="https://endgame.imora.net/" target="_blank" alt="avengers">
+        <img src="../pictures/endgames.png">
+        </a>
+        <a href="https://heartofsnow.net/nottinghill/" target="_blank" alt="notting hill">
+        <img src="../pictures/nothinghill.jpg">
+        </a>
+        <a href="https://fanlistings.neo-zelandaise.net/sims4/" target="_blank" alt="the sims 4">
+        <img src="../pictures/sims4.png">
+        </a>
+        <a href="https://fan.redcrown.net/max/fan" target="_blank" alt="life is strange">
+        <img src="../pictures/lis.png">
+        </a>
+        <a href="https://love.cordy.nu/tr/" target="_blank" alt="tomb raider">
+        <img src="../pictures/tombraider.webp">
+        </a>
+        <a href="https://fan.midnight-cloud.net/pp/" target="_blank" alt="pride and prejudice (2005)">
+        <img src="../pictures/prideandprejudice.jpg">
+        </a>
+        <a href="https://decembergirl.net/sw/" target="_blank" alt="star wars">
+        <img src="../pictures/starwars.jpg">
+        </a>
+        <a href="http://marvel.ravenbeauty.net/ant-man/" target="_blank" alt="antman">
+        <img src="../pictures/ant-man.png">
+        </a>
+        <a href="" target="_blank" alt="webdesign">
+        <img src="../pictures/webdesign.png">
+        </a>
+        <a href="https://fanlistings.melankorin.net/minecraft/" target="_blank" alt="minecraft">
+        <img src="../pictures/minecraft.png"> 
+        </a>
+        <a href="https://haikyuu.nymphae.net/" target="_blank" alt="haikyuu">
+        <img src="../pictures/haikyuu.png">
+        </a>
+        <a href="" target="_blank" alt="music">
+        <img src="../pictures/music.png">
+        </a>
+        </div>
+    </section>
+    <div class="div2">
+      <h2 class="facts-about-me">facts</h2>
+      <ul class="facts-list">
+        <li><strong>birthday</strong> 2004-10-27</li>
+        <li><strong>star sign</strong> scorpio</li>
+        <li><strong>MBTI</strong> enfj</li>
+        <li><strong>location</strong> Paris</li>
+        <li><strong>occupation</strong> college student 4th year</li>
+        <li><strong>religion</strong> atheism</li>
+        <li><strong>political view</strong> far left</li>
+        <li><strong>hogwart house</strong> hufflepuff</li>
+      </ul>
+    </div>
+    <div class="div3"> 
+      <h2 class="manifesto">
+        Manifesto !!
+        <img src="../pictures/cute-emoticon.gif" width="51" height="20" alt="">
+      </h2>
+      <p><strong>Let's bring back</strong> the cool Internet and blogs of the 2000's !! be creative, but in the right way, let’s truly express ourselves without following the capitalist trends of the 21st century.
+</p>
+                <p>I believe that the <strong>capitalism system</strong> is the worst thing in our civilization. If we look at almost all major movements, everything is tainted by this desire for competitiveness, creation, attention, profit, and demand. For example, if we take religion or even school, the darkest aspects of these situations often have their roots in the capitalist system.
+</p>
+<p>That’s unfortunately what happened to blogs and the Internet. Before, <strong>it was personal, creative,</strong> and didn’t try to make us productive or appeal to popularity or profit. It was for our friends, or even just for ourselves, which allowed us to be truly creative. I think it was the best generation to be on the Internet.
+</p>
+    </div>
+  </div>
+</main>
+      </div> 
+      </div>
+      <div class="kitty">
+          <img id="kitty" src="../pictures/hello-kitty-saying-hello.gif" alt="pfp">
+          </div>
+      <footer id="footer">2025, jade's blog !!𐙚🧸ྀི </footer>
+    </div>
+  </body>
+</html>
