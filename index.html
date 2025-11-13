@@ -1,112 +1,285 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <div class="crt"></div>
+    <link rel="icon" href="../pictures/strawberry-cat-v2.png" type="image/x-icon">
     <meta charset="UTF-8" />
-    <title>: ̗̀➛Beboune's blog!!𐙚🧸ྀི</title>
+    <title>: ̗̀➛jade's blog!!𐙚🧸ྀི</title>
     <link rel="stylesheet" href="style2.css" />
+    <script type="text/javascript">
+// <![CDATA[
+var colours=new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
+var minisize=16; // smallest size of hearts in pixels
+var maxisize=28; // biggest size of hearts in pixels
+var hearts=66; // maximum number of hearts on screen
+var over_or_under="over"; // set to "over" for hearts to always be on top, or "under" to allow them to float behind other objects
+
+/*****************************
+*JavaScript Love Heart Cursor*
+*  (c)2013+ mf2fm web-design *
+*   http://www.mf2fm.com/rv  *
+*  DON'T EDIT BELOW THIS BOX *
+*****************************/
+var x=ox=400;
+var y=oy=300;
+var swide=800;
+var shigh=600;
+var sleft=sdown=0;
+var herz=new Array();
+var herzx=new Array();
+var herzy=new Array();
+var herzs=new Array();
+var kiss=false;
+
+if (typeof('addRVLoadEvent')!='function') function addRVLoadEvent(funky) {
+  var oldonload=window.onload;
+  if (typeof(oldonload)!='function') window.onload=funky;
+  else window.onload=function() {
+    if (oldonload) oldonload();
+    funky();
+  }
+}
+
+addRVLoadEvent(mwah);
+
+function mwah() { if (document.getElementById) {
+  var i, heart;
+  for (i=0; i<hearts; i++) {
+    heart=createDiv("auto", "auto");
+    heart.style.visibility="hidden";
+	heart.style.zIndex=(over_or_under=="over")?"1001":"0";
+    heart.style.color=colours[i%colours.length];
+	heart.style.pointerEvents="none";
+    if (navigator.appName=="Microsoft Internet Explorer") heart.style.filter="alpha(opacity=75)";
+    else heart.style.opacity=0.75;
+    heart.appendChild(document.createTextNode(String.fromCharCode(9829)));
+    document.body.appendChild(heart);
+    herz[i]=heart;
+	herzy[i]=false;
+  }
+  set_scroll();
+  set_width();
+  herzle();
+}}
+
+function herzle() {
+  var c;
+  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<hearts; c++) if (herzy[c]===false) {
+	  herz[c].firstChild.nodeValue=String.fromCharCode(9829);
+      herz[c].style.left=(herzx[c]=x-minisize/2)+"px";
+      herz[c].style.top=(herzy[c]=y-minisize)+"px";
+      herz[c].style.fontSize=minisize+"px";
+	  herz[c].style.fontWeight='normal';
+      herz[c].style.visibility='visible';
+      herzs[c]=minisize;
+      break;
+    }
+  }
+  for (c=0; c<hearts; c++) if (herzy[c]!==false) blow_me_a_kiss(c);
+  setTimeout("herzle()", 40);
+}
+
+document.onmousedown=pucker;
+document.onmouseup=function(){clearTimeout(kiss);};
+
+function pucker() {
+  ox=-1;
+  oy=-1;
+  kiss=setTimeout('pucker()', 100);
+}
+
+function blow_me_a_kiss(i) {
+  herzy[i]-=herzs[i]/minisize+i%2;
+  herzx[i]+=(i%5-2)/5;
+  if (herzy[i]<sdown-herzs[i] || herzx[i]<sleft-herzs[i] || herzx[i]>sleft+swide-herzs[i]) {
+    herz[i].style.visibility="hidden";
+    herzy[i]=false;
+  }
+  else if (herzs[i]>minisize+2 && Math.random()<.5/hearts) break_my_heart(i);
+  else {
+    if (Math.random()<maxisize/herzy[i] && herzs[i]<maxisize) herz[i].style.fontSize=(++herzs[i])+"px";
+    herz[i].style.top=herzy[i]+"px";
+    herz[i].style.left=herzx[i]+"px";
+  }
+}
+
+function break_my_heart(i) {
+  var t;
+  herz[i].firstChild.nodeValue=String.fromCharCode(9676);
+  herz[i].style.fontWeight='bold';
+  herzy[i]=false;
+  for (t=herzs[i]; t<=maxisize; t++) setTimeout('herz['+i+'].style.fontSize="'+t+'px"', 60*(t-herzs[i]));
+  setTimeout('herz['+i+'].style.visibility="hidden";', 60*(t-herzs[i]));
+}
+
+document.onmousemove=mouse;
+function mouse(e) {
+  if (e) {
+    y=e.pageY;
+    x=e.pageX;
+  }
+  else {
+    set_scroll();
+    y=event.y+sdown;
+    x=event.x+sleft;
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  if (typeof(self.pageYOffset)=='number') {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+    sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+}
+
+function createDiv(height, width) {
+  var div=document.createElement("div");
+  div.style.position="absolute";
+  div.style.height=height;
+  div.style.width=width;
+  div.style.overflow="hidden";
+  div.style.backgroundColor="transparent";
+  return (div);
+}
+// ]]>
+</script>
   </head>
   <body>
     <div id="container">
       <div id="headerArea">
         <div id="header">
-          <img src="pictures/welcome-banner.gif" alt="banner" height="120" />
+          <img src="../pictures/welcome-banner.gif" alt="banner" height="120" />
         </div>
         <nav id="navbar">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/">Home</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/about">About</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/pics">Pics</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/journals">Journals</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/inspo">Inspo</a></li>
+            <li><a href="https://s0ft-rvge.neocities.org/ressource">Ressources</a></li>
           </ul>
         </nav>
       </div>
 
       <div class="scrolling-text">
         <marquee behavior="scroll" direction="left"
-          >Salut à toi !! (le seul et l'unique) ici un début de blog perso :) </marquee
+          >Hi !! (don't make fun of my site, you're just jealous :)) </marquee
         >
       </div>
 
       <div class="gif-divider">
         <img src="../pictures/banner_fraise.gif" alt="gif divider" height="80" />
       </div>
-
-
       <div id="flex">
         <aside id="leftSidebar">
-          <h2>💬 Chatbox</h2>
+          <div class="border-left">
+          <img class="welcome" src="../pictures/welcome-babygirl.gif" alt="border left" height="90%" width="200px" />
+        </div>
+          <h3>Please leave a message !!</h3>
           <div class="box">
-            <p>c'est aussi en travaux mais ça serait sympa si je mettais un livre
-          d'or pour que tu me laisse des messages !!</p>
+            <iframe src="https://www5.cbox.ws/box/?boxid=959011&boxtag=hfPjeG" width="100%" height="200" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
             <ul style="padding-left: 50px">
           </div>
           <div class="gif-aside">
-            <img src="../pictures/stickers-fraise-sparkles.gif" alt="fraises" width="90%" height="auto" />
+            <img src="../pictures/stickers-fraise-sparkles.gif" alt="fraises" width="70%" height="auto" />
           </div>
-          <h2>*♡+:｡.｡Navigate</h2>
-          <h3>Mes autres médias !!</h3>
-          <ul>
-            <li>
-              <a
-                href="https://www.instagram.com/jadounn.e/"
-                target="insta"
-                >Instagram</a
-              >
-            </li>
-            <li>
-              <a href="https://fr.pinterest.com/hevd3ry/" target="_blank"
-                >Pinterest</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://open.spotify.com/user/pandasouvage"
-                target="_blank"
-                >Spotify</a
-              >
-            </li>
-            <li>
-              <a href="https://www.youtube.com/@jadounn.e/featured" target="_blank"
-                >YouTube</a
-              >
-            </li>
-            <li>
-              <a href="/notfinished" target="_blank">Carrd</a>
-            </li>
-          </ul>
+          
+          <div class="FC2-clapping-widget">
+          <!-- FC2 Clap tag starts here -->
+<div class="FC2-clapping-widget" style="text-align:center; padding:0px;">
+  <a href="https://clap.fc2.com/post/jadeuh/?url=https%3A%2F%2F127.0.0.1%3A5500%2Fmyactualblog.html&title=jade's+blog" 
+     target="_blank" title="Web Clap by FC2">
+    <img src="//clap.fc2.com/images/button/red/jadeuh?url=https%3A%2F%2F127.0.0.1%3A5500%2Fmyactualblog.html&lang=en" 
+         alt="Web Clap by FC2" style="border:none; width:120px; padding:10px;" />
+  </a>
+</div>
+<!-- FC2 Clap tag ends here -->
+          </div>
+          <div class="lastfm-widget" style="text-align:center;">
+         <a href="https://www.last.fm/user/nvwj0on">
+          <img src="https://lastfm-recently-played.vercel.app/api?user=nvwj0on" height="auto" width="100%">
+         </a>
+</div>
+<div class="my-link-back">
+  <a href="https://s0ft-rvge.neocities.org/" target="_blank">
+    <img src="../pictures/jade!.gif" alt="my link back" width="88px" height="31px">
+  </a>
+  <textarea class="link-back-text" name id rows="10" aria label="link-back-text">
+    "<a href='https://s0ft-rvge.neocities.org/' target='_blank'><img src='https://s0ft-rvge.neocities.org/pictures/jade!.gif' alt='jade's blog' width='88' height='31'></a>"
+  </textarea>
+</div>
         </aside>
         <main>
-          <div class ="about-me">
-          <div class="pfp">
-          <img id="pfp" src="../pictures/pfp.png" alt="pfp">
-          </div>
-          <h1>⇢ ˗ˏˋ About me ࿐ྂ</h1>
-          <p><strong> (même si tu sais tout) </strong></p>
-          <div class="about-text">
-          <p>
-            20yo, 27/10/04 (scorpio), likes ; sociology, dogs, the sims4, web design
-            ;)
-          </p>
-          <p>
-            J'aimerais bien faire un blog perso, mais pour l'instant c'est
-            juste un brouillon, je vais essayer de le faire évoluer au fur et à mesure... 
-            Par exemple ici j'aimerais mettre une sorte de pp sur le côté droit <3 
-          </p>
-          <p>
-            J'ai utilisé le layout maker de
-            <a
-              href="/sadgrl/learn/understanding-tweaking-my-layout-maker/"
-              target="_blank"
-              >sadgrl</a
-            >
-            pour créer ce layout, mais je vais essayer de le modifier un peu
-            pour qu'il me corresponde mieux ;)
-          </p>
-          </div>
-          </div>
-        
+        <div class="about-me">
+  <div class="pfp">
+    <img id="pfp" src="../pictures/lps-pink.gif" alt="pfp">
+  </div>
+  <h2 class="welcome_title">
+  <img src="../pictures/angel-wings-left.gif" width="26px" height="21px">
+  welcome !!
+  <img src="../pictures/angel-wings-right.gif" width="26px" height="21px">
+  </h2>
+  <div class="about-text">
+    <p>
+      hi !! im jade! here is a little blog that help me to progress on html/css
+      and also a way to share my interests and my life <3
+    </p>
+    <p>
+      i'm gonna try to update it often, but i can't promise anything hehe
+      (school is hard, but mostly procrastination and the urge to play the sims4 on my bf's pc)
+    </p>
+    <p>
+      i used the layout maker of
+      <a
+        href="/sadgrl/learn/understanding-tweaking-my-layout-maker/"
+        target="_blank"
+        >sadgrl</a
+      >
+      to create one but obv i will edit it so that they fit more on what i want for my website^^ ;)
+    </p>
+  </div>
+</div>
 
 <section class="stamps">
   <marquee behavior="scroll" direction="left">
@@ -120,18 +293,28 @@
     <img src="../pictures/kind-stamps.png" alt="stamp 7" width="80" height="40" />
     <img src="../pictures/cat-stamps.gif" alt="stamp 7" width="80" height="40" />
     <img src="../pictures/pokemon-stamps.png" alt="stamp 7" width="80" height="40" />
+    <img src="../pictures/freegaza-stamps.gif" alt="stamp 1" width="80" height="40" />
+
+    <img src="../pictures/youmakemyheart-stamps.gif" alt="stamp 1" width="80" height="40" />
+    <img src="../pictures/veryloved-stamps.png" alt="stamp 2" width="80" height="40" />
+    <img src="../pictures/support-stamps.png" alt="stamp 3" width="80" height="40" />
+    <img src="../pictures/LPS-stamps.gif" alt="stamp 4" width="80" height="40" />
+    <img src="../pictures/cute-stamps.png" alt="stamp 5" width="80" height="40" />
+    <img src="../pictures/bow-stamps.png" alt="stamp 5" width="80" height="40" />
+    <img src="../pictures/miku-said-gay-minecraft-rights-by-iceofwaterflock-ddcv56r-fullview.png" alt="stamp 6" width="80" height="40" />
+    <img src="../pictures/kind-stamps.png" alt="stamp 7" width="80" height="40" />
+    <img src="../pictures/cat-stamps.gif" alt="stamp 7" width="80" height="40" />
+    <img src="../pictures/pokemon-stamps.png" alt="stamp 7" width="80" height="40" />
+    <img src="../pictures/freegaza-stamps.gif" alt="stamp 1" width="80" height="40" />
   </marquee>
 </section>
-
+<div class="parent">
          <section class="music-player">
-          <div class="dontgiveup">
-          <img id="dontgiveup" src="../pictures/dontgiveeup.gif" alt="pfp">
-          </div>
-        <h2>Cute songs˚ ༘♡ ⋆｡˚</h2>
-        <div class="youtube-player" style="margin-top: 20px;">
+        <img id="gif-music" src="../pictures/gif-music.gif" alt="music note" width="75" height="40">  
+        <div class="youtube-player">
           <iframe
-            width="250"
-            height="140"
+            width="275"
+            height="155"
             src="https://www.youtube.com/embed/osUvrYobexU?si=nMEDBIzTeT7JXztK"
             title="YouTube video player"
             frameborder="0"
@@ -140,14 +323,88 @@
             allowfullscreen
           ></iframe>
         </div>
-      </section>
-          </p>
+        </section>
+        <div class="div2">
+          <img id="dontgiveup" src="../pictures/bow-strawberry.gif" alt="pfp">
+          <form method="post" action="https://poll.pollcode.com/51961766">
+            <div style="background-color:#ffe2ee;padding:2px;font-size:12px;color:#FF85B1;">
+              <div style="padding:2px 0px 4px 2px;"><strong>do you like strawberry?</strong></div><input type="radio" name="answer" value="1" id="answer519617661" style="float:left;" />
+              <label for="answer519617661" style="float:left;width:200px;">yes obv !!</label>
+              <div style="clear:both;height:2px;"></div>
+              <input type="radio" name="answer" value="2" id="answer519617662" style="float:left;" />
+              <label for="answer519617662" style="float:left;width:200px;">sadly no :(</label>
+              <div style="clear:both;height:2px;"></div><input type="radio" name="answer" value="3" id="answer519617663" style="float:left;" />
+              <label for="answer519617663" style="float:left;width:200px;">i prefer raspberry tbh</label>
+              <div style="clear:both;height:2px;"></div>
+              <div align="center" style="padding:3px;"><input type="submit" value=" Vote ">&nbsp;<input type="submit" name="view" value=" View "></div><div align="right" style="font-size:5px">pollcode.com <a href="https://pollcode.com/">free polls</a></div></div></form>
+          </div>
+          <div class="div3"> 
+            <h2 class="manifesto">
+            cutie patootie sites
+  <img src="../pictures/cute-emoticon.gif" width="51px" height="20px">
+  </h2>
+  <p></p>
+  <div class="webrings">
+  <a href="https://petrapixel.neocities.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/petracoding/petrapixel.neocities.org@latest/public/assets/img/linkback.gif" alt="petrapixel"></a>
+  <a href="https://nyaa.neocities.org/" target="_blank"><img src="../pictures/nyaabanner.gif" alt="nyaa.neocities.org"></a>
+  <a href="https://doqmeat.com/" target="_blank"><img src="../pictures/doqmeats.png" alt="doqmeat's (des) blog"></a>
+  <a href="https://doqmeat.com/" target="_blank"><img src="../pictures/fairygore.png" alt="fairygore"></a>
+  <a href="https://ol1vi4s-corner.neocities.org/" target="_blank"><img src="../pictures/olivia.gif" alt="olivia's corner"></a>
+  <a href="https://sakuradreams.neocities.org/" target="_blank"><img src="../pictures/SakuraDreams.gif" alt="sakuradreams"></a>
+  <a href="https://oekaki.cinni.net/" target="_blank"><img src="../pictures/cinni.gif" alt="oekaki.cinni.net"></a>
+  <a href="https://nanacore.neocities.org/" target="_blank"><img src="../pictures/nanacore.png" alt="nanacore.neocities.org"></a>
+  <a href="https://allyratworld.com" target="_blank"><img src="../pictures/ally.png" alt="allyratworld.com"></a>
+  <a href="https://goooby.neocities.org/" target="_blank"><img src="../pictures/goooby.gif" alt="goooby.neocities.org"></a>
+  <a href="https://citrusman.neocities.org/" target="_blank"><img src="../pictures/citrusman.png" alt="citrusman"></a>
+  <a href="https://gothiclolita.neocities.org/" target="_blank"><img src="../pictures/gothiclolita.png" alt="gothiclolita.neocities.org" width="88px"></a>
+  <a href="https://tinyhrts.neocities.org/" target="_blank"><img src="../pictures/tinyhrts.png" alt="tinyhrts.neocities.org"></a>
+  <a href="https://comfort.kayla.care/" target="_blank"><img src="../pictures/comfort.kayla.care.gif" alt="comfort.kayla.care"></a>
+  <a href="https://lavender-but-bread.neocities.org/" target="_blank"><img src="../pictures/lavender.png"></a>
+  <a href="https://maplebear.neocities.org/" target="_blank"><img src="../pictures/maplebear.gif" alt="maplebear.neocities.org"></a>
+  <a href="https://slushiecafe.neocities.org/" target="_blank"><img src="../pictures/slushiecafe.gif" alt="slushiecafe.neocities.org"></a>
+  <a href="https://claeiy.neocities.org/" target="_blank"><img src="../pictures/claeiy.gif" alt="claeiy.neocities.org"></a>
+  <a href="https://planetaryinfluence.neocities.org/" target="_blank"><img src="../pictures/planetaryinfluence.gif" alt="planetaryinfluence.neocities.org"></a>
+  <a href="https://strawberry-bunny.neocities.org/" target="_blank"><img src="../pictures/strawberry-bunny.gif"></a>
+  <a href="https://yarnfish.neocities.org/" target="_blank"><img src="../pictures/yarnfish.gif" alt="yarnfish.neocities.org"></a>
+  <a href="https://toyhamu.nekoweb.org/" target="_blank"><img src="../pictures/toyhamu.gif" alt="toyhamu.nekoweb.org"></a>
+  <a href="https://prismatic-realm.net/" target="_blank"><img src="../pictures/prismatic-realm.gif" alt="prismatic-realm.net"></a>
+  </div>
+          </div>
+</div>
+          <div class="parent2">
+          <div class="blinkies">
+            <img src="../pictures/blinkie-pc.gif" alt="blinkie 1" width="160px" height="30px">
+            <img src="../pictures/blinkie-badb.gif" alt="blinkie 2" width="160px" height="30px">
+            <img src="../pictures/blinkie-bi.gif" alt="blinkie 3" width="160px" height="30px">
+            <img src="../pictures/blinkie-gal.gif" alt="blinkie 4" width="160px" height="30px">
+            <img src="../pictures/blinkie-kawai.gif" alt="blinkie 5" width="160px" height="30px">
+            <img src="../pictures/blinkie-mwa.gif" alt="blinkie 6" width="160px" height="30px">
+            <img src="../pictures/blinkie-pinterest.gif" alt="blinkie 7" width="160px" height="30px">
+            <img src="../pictures/blinkie-pokemon.gif" alt="blinkie 8" width="160px" height="30px">
+            <img src="../pictures/blinkie-sick.gif" alt="blinkie 9" width="160px" height="30px">
+            <img src="../pictures/blinkie-sweet.gif" alt="blinkie 10" width="160px" height="30px">
+            <img src="../pictures/blinkie-tumblr.gif" alt="blinkie 11" width="160px" height="30px">
+            <img src="../pictures/blinkie-angel.gif" alt="blinkie 12" width="160px" height="30px">
+          </div>
+
+          <div class="updates">
+            <h2>updates !!</h2>
+              <ul class="updates-site">
+       <p class="upadate1"><strong>31/10/25:</strong> updated the about me page !! (still in wip) and do this part</p>
+       <p><strong>07/11/25:</strong> adding hover and stuff, trying hard to make this part look cool but TT</p>
+       <p><strong>09/11/25:</strong> just finished the updates grid, add an continue? page and moving the manifesto to my about page</p>
+        <p><strong>10/11/25:</strong> updated my neocities blog!! (follow me)</p>
+        <p><strong>12/11/25:</strong> made my link back and add some neighbors (not finished)</p> 
+        </ul>
+          </div>
+          </div>
         </main>
+      </div> 
       </div>
       <div class="kitty">
           <img id="kitty" src="../pictures/hello-kitty-saying-hello.gif" alt="pfp">
           </div>
-      <footer id="footer">2025, Béboune's blog !!𐙚🧸ྀི </footer>
+      <footer id="footer">2025, jade's blog !!𐙚🧸ྀི </footer>
     </div>
   </body>
 </html>
