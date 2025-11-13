@@ -1,4 +1,4 @@
-/* my actual blog style2.css */
+
 @font-face {
   font-family: cutesy;
   src: url(../fonts/cutesy.TTF);
@@ -45,10 +45,9 @@ body {
   color: #E8F4C4;
 }
 
-/* rétablit le scroll global */
 html, body {
-  overflow-x: hidden; /* pas de scroll horizontal */
-  overflow-y: auto;   /* scroll vertical normal */
+  overflow-x: hidden;
+  overflow-y: auto;   
 }
 
 /* Curseur personnalisé global */
@@ -89,38 +88,19 @@ textarea:active {
   border-bottom: 2px dotted #fff;
 }
 
-/* below this line is CSS for the layout */
-
-/* this is a CSS comment
-    to uncomment a line of CSS, remove the * and the /
-    before and after the text */
-
-/* the "container" is what wraps your entire website */
-/* if you want something (like the header) to be Wider than
-    the other elements, you will need to move that div outside
-    of the container */
 #container {
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* the area below is for all links on your page
-    EXCEPT for the navigation */
 #container a {
   color: #FCEF90;
-  /* if you want to remove the underline
-      you can add a line below here that says:
-      text-decoration:none; */
 }
 
 #header {
   width: 100%;
   background-color: #CBAFE1;
-  /* header color here! */
   height: 150px;
-  /* this is only for a background image! */
-  /* if you want to put images IN the header, 
-      you can add them directly to the <div id="header"></div> element! */
   background-image: url(../pictures/pastel-banner.jpeg);
   background-size: 100%;
   display: flex;
@@ -134,11 +114,10 @@ textarea:active {
   justify-self: flex-end;
 }
 
-/* navigation section!! */
+
 #navbar {
   height: 40px;
   background-color: #CCEF9C;
-  /* navbar color */
   width: 100%;
   align-content: center;
 }
@@ -155,16 +134,12 @@ textarea:active {
   padding-top: 10px;
 }
 
-/* navigation links*/
 #navbar li a {
   color: #8BD3EE;
-  /* navbar text color */
   font-weight: 800;
   text-decoration: none;
-  /* this removes the underline */
 }
 
-/* navigation link when a link is hovered over */
 #navbar li a:hover {
   color: #E8F4C4;
   text-decoration: underline;
@@ -175,9 +150,6 @@ textarea:active {
 
 }
 
-/* this colors BOTH sidebars
-    if you want to style them separately,
-    create styles for #leftSidebar and #rightSidebar */
 aside {
   background-color: #8BD3EE;
   width: 200px;
@@ -186,7 +158,6 @@ aside {
   border-top: 3px dotted #fff;
   border-left: 3px dotted #fff;
   border-bottom: 3px dotted #fff;
-  /* this makes the sidebar text slightly smaller */
 }
 
 .gif-aside {
@@ -200,11 +171,8 @@ aside {
 gif-aside img {
   width: 100px;
   height: auto;
-  /* this is the maximum width of the gif */
 }
 
-/* this is the color of the main content area,
-    between the sidebars! */
 main {
   background-color: #CBAFE1;
   border: 3px dotted #fff;
@@ -305,7 +273,7 @@ main {
   will-change: transform, box-shadow, filter;
   cursor: pointer;
   display: inline-block;
-  border-radius: 6px; /* optionnel */
+  border-radius: 6px; 
 }
 
 .about-me-badges img:hover,
@@ -350,19 +318,19 @@ ul.facts-list {
 }
 
 .lastfm-widget {
-  width: 215px; /* largeur de ta sidebar */
+  width: 215px; 
   height: auto;
-  overflow: hidden; /* masque le surplus à droite */
+  overflow: hidden; 
   margin: 0 auto;
   padding: 0;
   height: auto;
 }
 
 .lastfm-widget img {
-  width: 100%; /* garde les proportions dans ton bloc */
+  width: 100%; 
   display: block;
   object-fit: cover;
-  object-position: left; /* garde la partie gauche visible */
+  object-position: left; 
 }
 
 
@@ -415,8 +383,8 @@ h1 {
 .welcome-title {
   display: flex;
   align-items: center;
-  justify-content: center; /* centre le tout horizontalement */
-  gap: 8px; /* espace entre les éléments */
+  justify-content: center; 
+  gap: 8px;
 }
 
 .welcome-title img {
@@ -424,22 +392,20 @@ h1 {
 }
 
 strong {
-  /* this styles bold text */
   color: #CCEF9C;
   padding-top: 0;
-  padding-bottom: 5px; /* ou la valeur que tu veux */
+  padding-bottom: 5px; 
   margin-top: 0;
   margin-bottom: 5px;
 }
 
 .about-me > p {
   padding-top: 0;
-  padding-bottom: 5px; /* ou la valeur que tu veux */
+  padding-bottom: 5px;
   margin-top: 0;
-  margin-bottom: 8px;  /* ajuste si besoin */
+  margin-bottom: 8px;  
 }
 
-/* my chat box (or smth else i might just change it)*/
 .box {
   border: 1px solid #CCEF9C;
   background-image: url(../pictures/heart-bg.jpeg);
@@ -472,15 +438,6 @@ strong {
   background-color: #ffffff;
 }
 
-/* BELOW THIS POINT IS MEDIA QUERY */
-
-/* so you wanna change the width of your page? 
-    by default, the container width is 900px.
-    in order to keep things responsive, take your new height,
-    and then subtrack it by 100. use this new number as the 
-    "max-width" value below
-    */
-
 @media only screen and (max-width: 800px) {
   #flex {
     flex-wrap: wrap;
@@ -490,10 +447,6 @@ strong {
     width: 100%;
   }
 
-  /* the order of the items is adjusted here for responsiveness!
-      since the sidebars would be too small on a mobile device.
-      feel free to play around with the order!
-      */
   main {
     order: 1;
   }
@@ -508,10 +461,10 @@ strong {
 
   .border-left {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
-  width: 100%;             /* occupe toute la largeur possible */
-  height: 150px;           /* fixe une hauteur pour que align-items fonctionne */
+  justify-content: center; 
+  align-items: center;     
+  width: 100%;            
+  height: 150px;        
 }
 
   #navbar ul {
@@ -569,16 +522,16 @@ box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 40%), inset -13px 0px 6px -1
 }
 
 .webrings {
-  display: flex;             /* aligne les éléments sur une seule ligne */
+  display: flex;             
   flex-wrap: wrap;
-  row-gap: 0px;        /* espace vertical entre les lignes */
-  column-gap: 10px;      /* espace horizontal entre les images */
-  justify-content: center;   /* centre le tout horizontalement */
-  align-items: center;       /* aligne verticalement si tailles différentes */
+  row-gap: 0px;        
+  column-gap: 10px;      
+  justify-content: center;   
+  align-items: center;      
 }
 
 .webrings img {
-  display: block;            /* évite les petits espaces blancs sous les images */
+  display: block;            
 }
 
 #pfp {
@@ -597,14 +550,11 @@ box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 40%), inset -13px 0px 6px -1
   border-bottom: 3px dashed #e91e3d;
 }
 
-/* gif header */
 .gif-divider {
   text-align: center;
   background: transparent;
   padding: 5px 0;
 }
-
-/* décoration background */
 
 /* blocs */
 .site-log,
@@ -644,8 +594,8 @@ box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 40%), inset -13px 0px 6px -1
   padding : 0;
   display: flex;
   margin : 0;
-  flex-direction: column; /* titre au-dessus des vignettes */
-  align-items: flex-start; /* aligne h2 + vignettes à gauche */
+  flex-direction: column; 
+  align-items: flex-start; 
   gap: 8px;
 }
 
@@ -671,25 +621,25 @@ h2 {
 .dontgiveup {
   position: relative;
   display: flex;
-  align-items: flex-end;  /* place tout en bas */
-  justify-content: flex-start; /* aligne à gauche */
+  align-items: flex-end; 
+  justify-content: flex-start; 
   padding: 10px;
   width: 100%;
   height: auto;
 }
 
 #dontgiveup {
-  width: 60px; /* au lieu de 100% pour que le GIF garde une taille raisonnable */
+  width: 60px; 
   height: auto;
-  margin-right: 20px; /* espace entre le GIF et le texte */
-  float: left;      /* fait flotter le GIF à gauche du texte */
+  margin-right: 20px; 
+  float: left;      
 }
 
 .div2 .dgu-text {
-  color: #ff82a9; /* rose pastel par exemple */
+  color: #ff82a9; 
   margin: 0;
   padding: 0;
-  text-align: justify; /* pour un rendu “journal” */
+  text-align: justify; 
 }
 
 .blinkies {
@@ -708,7 +658,6 @@ h2 {
   justify-self: center;
 }
 
-/* mot de fin :D */
 .footer-section {
   text-align: center;
   width: 100%;
@@ -743,12 +692,12 @@ grid-template-rows: repeat(2, 1fr);
 grid-column-gap: 10px;
 grid-row-gap: 10px;
 display: grid;
-grid-template-columns: 1.8fr 1.2fr; /* music-player plus petit, div2 plus large */
-grid-template-rows: auto auto; /* première ligne pour les deux, deuxième ligne pour div3 */
+grid-template-columns: 1.8fr 1.2fr; 
+grid-template-rows: auto auto; 
 }
 
 .div3 { 
-  grid-column: 1 / span 2; /* prend les deux colonnes */
+  grid-column: 1 / span 2;
   color: #D20E7C;
 }
 
@@ -772,4 +721,5 @@ align-items: center;
   display: block;          
   margin: 0;
   padding: 10px;
+
 }
