@@ -4,18 +4,79 @@
   src: url(../fonts/cutesy.TTF);
 }
 
+@font-face {
+  font-family: dogica;
+  src: url(../fonts/dogica.ttf);
+}
+
+@font-face {
+  font-family: alagard;
+  src: url(../fonts/alagard.ttf);
+}
+
+@font-face {
+  font-family: rainyhearts;
+  src: url(../fonts/rainyhearts.ttf);
+}
+
+@font-face {
+  font-family: Minecraft;
+  src: url(../fonts/Minecraft.ttf);
+}
+
+@font-face {
+  font-family: Daydream;
+  src: url(../fonts/Daydream.otf);
+}
+
+@font-face {
+  font-family: bubbly;
+  src: url(../fonts/bubbly.TTF);
+}
+
 body {
-  font-family: cutesy;
-  cursor: url(../cursor/normal.png), auto;
+  font-family: dogica;
+  font-size: 12px;
+  letter-spacing: -3px;
+  line-height: 1.4;
   margin: 0;
   background-size: 940px;
   background-image: url(../pictures/pink-bg.png);
   color: #fceaff;
 }
 
+/* rétablit le scroll global */
+html, body {
+  overflow-x: hidden; /* pas de scroll horizontal */
+  overflow-y: auto;   /* scroll vertical normal */
+}
+
+/* Curseur personnalisé global */
+*,
+*::before,
+*::after,
+a,
+a:hover,
+a:active,
+button,
+button:hover,
+button:active,
+input,
+input:hover,
+input:active,
+textarea,
+textarea:hover,
+textarea:active {
+  cursor: url('../cursor/normal.png'), auto !important;
+}
+
+
 * {
   box-sizing: border-box;
+  overflow-clip-margin: content-box;
 }
+
+
 
 /* texte qui défile */
 .scrolling-text {
@@ -23,7 +84,7 @@ body {
   padding: 10px;
   color: #ad051e;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
   text-align: center;
   border-top: 2px dotted #fff;
   border-bottom: 2px dotted #fff;
@@ -41,18 +102,13 @@ body {
     of the container */
 #container {
   max-width: 900px;
-  /* this is the width of your layout! */
-  /* if you change the above value, scroll to the bottom
-      and change the media query according to the comment! */
   margin: 0 auto;
-  /* this centers the entire page */
 }
 
 /* the area below is for all links on your page
     EXCEPT for the navigation */
 #container a {
   color: #af0b0b;
-  font-weight: bold;
   /* if you want to remove the underline
       you can add a line below here that says:
       text-decoration:none; */
@@ -118,6 +174,8 @@ body {
 
 #flex {
   display: flex;
+  height: 169vh;
+
 }
 
 /* this colors BOTH sidebars
@@ -170,9 +228,8 @@ main {
 /* this makes sure that images in the main content
       area are responsive! */
 #pfp {
-  width: 25%;
+  width: 35%;
   height: auto;
-  border: 3px dotted hsl(345, 96%, 56%);
   display: flex;
   float: right;
   display: block;
@@ -192,6 +249,7 @@ main {
   text-align: start;
   margin: 0;
   padding: 0;
+  color: rgb(255, 133, 177);
 }
 
 /* what's this "order" stuff about??
@@ -200,8 +258,27 @@ main {
     tells the CSS the order in which to display them.
     left sidebar is 1, content is 2, and right sidebar is 3! */
 
-*/ #leftSidebar {
+#leftSidebar {
+  width: 230px;
   order: 1;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.lastfm-widget {
+  width: 215px; /* largeur de ta sidebar */
+  height: auto;
+  overflow: hidden; /* masque le surplus à droite */
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
+}
+
+.lastfm-widget img {
+  width: 100%; /* garde les proportions dans ton bloc */
+  display: block;
+  object-fit: cover;
+  object-position: left; /* garde la partie gauche visible */
 }
 
 #rightSidebar {
@@ -225,6 +302,22 @@ h1,
 h2,
 h3 {
   color: #fff2f7;
+  font-family: cutesy;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-family: bubbly;
+  letter-spacing: 0.5px;
+  font-size: 21px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 h1 {
@@ -233,19 +326,57 @@ h1 {
   margin-bottom: 10px;
 }
 
+.welcome-title {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre le tout horizontalement */
+  gap: 8px; /* espace entre les éléments */
+}
+
+.welcome-title img {
+  vertical-align: middle;
+}
+
 strong {
   /* this styles bold text */
   color: #f5646b;
+  padding-top: 0;
+  padding-bottom: 5px; /* ou la valeur que tu veux */
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
-/* this is just a cool box, it's the darker colored one */
+.about-me > p {
+  padding-top: 0;
+  padding-bottom: 5px; /* ou la valeur que tu veux */
+  margin-top: 0;
+  margin-bottom: 8px;  /* ajuste si besoin */
+}
+
+/* my chat box (or smth else i might just change it)*/
 .box {
-  background-color: hsl(338, 100%, 87%);
   border: 1px solid #f5646b;
-  padding: 10px;
+  background-image: url(../pictures/heart-bg.jpeg);
+  background-size: 50px;
+  background-repeat: repeat;
+  background-position: center;
+  position: relative;
+  width: 190px;
+  height: 190px;
+  margin: 10px auto 0 10px;
+  padding: 0;
+  display: block; 
 }
 
-/* CSS for extras */
+.box iframe {
+  width: 105%;
+  height: 100%;
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 #topBar {
   width: 100%;
@@ -289,9 +420,79 @@ strong {
     order: 3;
   }
 
+  .border-left {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  width: 100%;             /* occupe toute la largeur possible */
+  height: 150px;           /* fixe une hauteur pour que align-items fonctionne */
+}
+
   #navbar ul {
     flex-wrap: wrap;
   }
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  margin-block-start: 7px;
+  margin-block-end: 7px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.socials ul {
+  list-style-type: none;
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
+}
+
+.socials li { 
+display: block; 
+padding: 4px 0;
+color: hsl(345, 96%, 56%);
+background-color: hsl(338, 100%, 87%);
+text-align: center;
+border-bottom: hsl(345, 96%, 56%);
+border-left: hsl(345, 96%, 56%);
+border-right: hsl(345, 96%, 56%);
+box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 20%), inset -13px 0px 6px -10px rgb(66 66 66 / 56%), inset 0px 13px 6px -10px #ffffff, inset 0px -13px 6px -10px rgb(66 66 66 / 38%);
+}
+
+.socials li:hover {
+background-color: hsl(338, 100%, 76%);
+box-shadow: inset 13px 0px 6px -10px rgb(66 66 66 / 40%), inset -13px 0px 6px -10px rgb(66 66 66 / 76%), inset 0px 13px 6px -10px #ffffff, inset 0px -13px 6px -10px rgb(66 66 66 / 58%);
+}
+
+.webrings {
+  display: flex;             /* aligne les éléments sur une seule ligne */
+  flex-wrap: wrap;
+  row-gap: 0px;        /* espace vertical entre les lignes */
+  column-gap: 10px;      /* espace horizontal entre les images */
+  justify-content: center;   /* centre le tout horizontalement */
+  align-items: center;
+  overflow-y: scroll;    
+  scrollbar-width: thin;
+  scrollbar-color: hsl(345, 96%, 56%) rgb(255, 226, 237);
+  height: 140px;
+}
+
+.webrings img {
+  display: block;            /* évite les petits espaces blancs sous les images */
+}
+
+#pfp {
+  overflow: visible !important;
 }
 
 /* header */
@@ -320,16 +521,44 @@ strong {
 .about,
 .chatbox,
 .music-player {
-  background: hsl(338, 100%, 94%);
   padding: 15px;
-  border: 3px dotted hsl(345, 96%, 56%);
+  border-image: url('../pictures/border-zigzag.png') 9 fill round; 
+  border-style : solid;
+  border-width: 12px;
   border-radius: 15px;
-  box-shadow: 2px 2px 6px #e5a1c4;
+  border-color: hsl(345, 96%, 56%);
   transition: transform 0.2s ease;
+  box-shadow: rgb(255, 133, 177) 0px 0px 8px, rgb(255, 133, 177) 0px 0px 16px;
 }
 
-.dontgiveup { 
-  margin-bottom: 15px;
+.music-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.music-player,
+.div2,
+.div3,
+.blinkies, 
+.updates,
+.about-me {
+  background: rgb(255, 226, 237) !important;
+  padding: 15px;
+  border: 2px solid hsl(345, 96%, 56%) !important;
+  border-radius: 15px !important;
+  box-shadow: rgb(255, 133, 177) 0px 0px 8px, rgb(255, 133, 177) 0px 0px 16px; 
+ }
+
+.youtube-player iframe {
+  border: 3px dotted hsl(345, 96%, 56%);
+  box-shadow: 2px 2px 6px #e5a1c4;
+}
+
+.youtube-player {
+  padding : 0;
+  display: flex;
+  margin : 0;
 }
 
 h2 {
@@ -346,14 +575,37 @@ h2 {
 }
 
 .dontgiveup {
-  padding: 0px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;  /* place tout en bas */
+  justify-content: flex-start; /* aligne à gauche */
+  padding: 10px;
+  width: 100%;
+  height: auto;
 }
 
 #dontgiveup {
-  width: 40%;
+  width: 60px; /* au lieu de 100% pour que le GIF garde une taille raisonnable */
   height: auto;
-  display: flex;
-  float: right;
+  margin-right: 20px; /* espace entre le GIF et le texte */
+  float: left;      /* fait flotter le GIF à gauche du texte */
+}
+
+.div2 .dgu-text {
+  color: #ff82a9; /* rose pastel par exemple */
+  margin: 0;
+  padding: 0;
+  text-align: justify; /* pour un rendu “journal” */
+}
+
+.blinkies {
+  color: #ff82a9;
+}
+
+.updates {
+  color: #ff82a9;
+  display:block;
+  width: 200%;
 }
 
 #kitty {
@@ -379,4 +631,155 @@ h2 {
   margin-top: 40px;
   font-size: 0.9em;
   color: #844561;
+}
+
+.crt::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 20;
+    background-size: 100% 2px, 3px, 100%;
+    pointer-events: none;
+}
+
+.parent {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(3, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+display: grid;
+grid-template-columns: 0.4fr 1.8fr; /* music-player plus petit, div2 plus large */
+grid-template-rows: auto auto; /* première ligne pour les deux, deuxième ligne pour div3 */
+}
+
+
+.div3 { 
+  grid-column: 1 / span 2; /* prend les deux colonnes */
+  color: hsl(338, 100%, 76%);
+}
+
+.music-player { 
+grid-area: 1 / 1 / 2 / 2; 
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 2 / 1 / 3 / 3; }
+.blinkies { grid-area: 3 / 1 / 4 / 2; }
+.updates { grid-area: 3 / 2 / 4 / 3; }
+
+.div2 {
+  letter-spacing: 0px;
+  padding-top: 35px;
+}
+
+.welcome {
+  height: 90%;
+  width: 200px;
+  display: block;          /* supprime display: flex inutile */
+  margin: 0;
+}
+
+.blinkies {
+  flex: 0 0 365px;         /* fixe env. 320px, s'adapte si besoin */
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 1 / 2  ;
+}
+
+/* updates : prend le reste, peut rétrécir */
+.updates {
+  flex: 1 1 0%;
+  min-width: 0;            /* permet au flex item de rétrécir correctement */
+  box-sizing: border-box;
+  height: 254px;
+  width: 254px;
+}
+
+.updates-site {
+  height: 150px;
+  overflow-y: auto;
+  padding-right: 5px;
+  padding-left: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(345, 96%, 56%) rgb(255, 226, 237);
+  height: 180px;
+  margin-top: 0;
+  width: 210px
+}
+
+P.update1 {
+  margin-top: 0 ;
+}
+
+
+/* si l'écran est trop petit, autoriser le wrap en responsive */
+@media (max-width: 720px) {
+  .parent2 { flex-wrap: wrap; }
+  .blinkies, .updates { flex: 1 1 100%; min-width: 0; }
+}
+
+.parent2 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  grid-template-rows: auto auto;
+  width: 100%;
+  height: 200px;
+}
+
+.blinkies img {
+  display: block;
+  width: 160px;
+  height: 30px;
+}
+
+.blinkies img:hover,
+.blinkies img:focus-visible {
+  transform: scale(1.1);
+}
+
+.link-back-text {
+  width: 85%;
+  height: 80px;
+  font-size: 10px;
+  font-family: cutesy;
+  color: #ad051e;
+  background-color: #fff0f6;
+  border: 2px dotted #ffb6c1;
+  padding: 5px;
+  box-sizing: border-box;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(345, 96%, 56%) rgb(255, 226, 237);
+}
+
+.webrings img:hover,
+.webrings img:focus-visible {
+  transform: scale(1.1);
+}
+
+.my-link-back {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.my-link-back img:hover,
+.my-link-back img:focus-visible {
+  transform: scale(1.1);
 }
